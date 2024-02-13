@@ -1,0 +1,237 @@
+F3D - A fast and minimalist 3D viewer
+Usage:
+  C:\Program Files\F3D\bin\f3d.exe [OPTIONS...] file1 file2 ...
+
+ Applicative options:
+      --input <files>           Input files (deprecated)
+      --output <png file>       Render to file
+      --no-background           No background when render to file
+  -h, --help                    Print help
+      --version                 Print version details
+      --readers-list            Print the list of readers
+      --config <filePath/filename/fileStem>
+                                Specify the configuration file to use. 
+                                absolute/relative path or filename/filestem 
+                                to search in configuration file locations.
+      --dry-run                 Do not read the configuration file
+      --no-render               Do not render anything and quit right after 
+                                loading the first file, use with --verbose 
+                                to recover information about a file.
+      --max-size <size in Mib>  Maximum size in Mib of a file to load, 
+                                negative value means unlimited (default: 
+                                -1)
+      --load-plugins <paths or names>
+                                List of plugins to load separated with a 
+                                comma
+      --scan-plugins            Scan some directories for plugins (result 
+                                can be incomplete)
+
+ Camera options:
+      --camera-position <X,Y,Z>
+                                Camera position (overrides camera direction 
+                                and camera zoom factor if any) (default: 0)
+      --camera-focal-point <X,Y,Z>
+                                Camera focal point (default: 0)
+      --camera-view-up <X,Y,Z>  Camera view up (default: 0)
+      --camera-view-angle <angle>
+                                Camera view angle (non-zero, in degrees)
+      --camera-direction <X,Y,Z>
+                                Camera direction (default: 0)
+      --camera-zoom-factor <factor>
+                                Camera zoom factor (non-zero) (default: 0)
+      --camera-azimuth-angle <angle>
+                                Camera azimuth angle (in degrees), 
+                                performed after other camera options 
+                                (default: 0)
+      --camera-elevation-angle <angle>
+                                Camera elevation angle (in degrees), 
+                                performed after other camera options 
+                                (default: 0)
+
+ General options:
+      --verbose [={debug, info, warning, error, quiet}(=debug)]
+                                Set verbose level, providing more 
+                                information about the loaded data in the 
+                                console output (default: info)
+      --quiet                   Enable quiet mode, which supersede any 
+                                verbose options and prevent any console 
+                                output to be generated at all (deprecated, 
+                                using `--verbose=quiet` instead)
+      --progress                Show progress bar
+      --geometry-only           Do not read materials, cameras and lights 
+                                from file
+      --group-geometries        When opening multiple files, show them all 
+                                in the same scene. Force geometry-only. The 
+                                configuration file for the first file will 
+                                be loaded.
+      --up {-X, +X, -Y, +Y, -Z, +Z}
+                                Up direction (default: +Y)
+  -x, --axis                    Show axes
+  -g, --grid                    Show grid
+      --grid-absolute           Position grid at the absolute origin 
+                                instead of below the model
+      --grid-unit arg           Size of grid unit square (default: 0)
+      --grid-subdivisions arg   Number of grid subdivisions (default: 10)
+  -e, --edges                   Show cell edges
+      --camera-index <index>    Select the camera to use (default: -1)
+  -k, --trackball               Enable trackball interaction
+      --invert-zoom             Invert zoom direction with right mouse 
+                                click
+      --animation-autoplay      Automatically start animation
+      --animation-index <index>
+                                Select animation to show (default: 0)
+      --animation-speed-factor <factor>
+                                Set animation speed factor (default: 1)
+      --animation-time <time>   Set animation time to load (default: 0)
+      --animation-frame-rate <frame rate>
+                                Set animation frame rate when playing 
+                                animation interactively (default: 60)
+      --font-file <file_path>   Path to a FreeType compatible font file
+
+ Material options:
+  -o, --point-sprites           Show sphere sprites instead of geometry
+      --point-size <size>       Point size when showing vertices or point 
+                                sprites (default: 10)
+      --line-width <width>      Line width when showing edges (default: 1)
+      --color <R,G,B>           Solid color (default: 1,1,1)
+      --opacity <opacity>       Opacity (default: 1)
+      --roughness <roughness>   Roughness coefficient (0.0-1.0) (default: 
+                                0.3)
+      --metallic <metallic>     Metallic coefficient (0.0-1.0) (default: 0)
+      --hdri <file path>        Path to an image file that will be used as 
+                                a light source and skybox (deprecated)
+      --hdri-file <file path>   Path to an image file that can be used as a 
+                                light source and skybox
+  -f, --hdri-ambient            Enable HDRI ambient lighting
+  -j, --hdri-skybox             Enable HDRI skybox background
+      --texture-matcap <file path>
+                                Path to a texture file containing a 
+                                material capture
+      --texture-base-color <file path>
+                                Path to a texture file that sets the color 
+                                of the object
+      --texture-material <file path>
+                                Path to a texture file that sets the 
+                                Occlusion, Roughness and Metallic values of 
+                                the object
+      --texture-emissive <file path>
+                                Path to a texture file that sets the 
+                                emitted light of the object
+      --emissive-factor <R,G,B>
+                                Emissive factor. This value is multiplied 
+                                with the emissive color when an emissive 
+                                texture is present (default: 1,1,1)
+      --texture-normal <file path>
+                                Path to a texture file that sets the normal 
+                                map of the object
+      --normal-scale <normalScale>
+                                Normal scale affects the strength of the 
+                                normal deviation from the normal texture 
+                                (default: 1)
+
+ PostFX (OpenGL) options:
+  -p, --translucency-support  Enable translucency support, implemented 
+                              using depth peeling
+  -q, --ambient-occlusion     Enable ambient occlusion providing 
+                              approximate shadows for better depth 
+                              perception, implemented using SSAO
+  -a, --anti-aliasing         Enable anti-aliasing, implemented using FXAA
+  -t, --tone-mapping          Enable Tone Mapping, providing balanced 
+                              coloring
+
+ Raytracing options:
+  -r, --raytracing         Enable raytracing
+      --samples <samples>  Number of samples per pixel (default: 5)
+  -d, --denoise            Denoise the image
+
+ Scientific visualization options:
+  -s, --scalars [=<array_name>(=)]
+                                Color by scalars (default: f3d_reserved)
+  -y, --comp [=<comp_index>(=-2)]
+                                Component from the scalar array to color 
+                                with. -1 means magnitude, -2 or the short 
+                                option, -y, means direct scalars (default: 
+                                -1)
+  -c, --cells                   Use a scalar array from the cells
+      --range <min,max>         Custom range for the coloring by array 
+                                (default: 0)
+  -b, --bar                     Show scalar bar
+      --colormap <color_list>   Specify a custom colormap (default: 
+                                0,0,0,0,0.4,0.9,0,0,0.8,0.9,0.9,0,1,1,1,1)
+  -v, --volume                  Show volume if the file is compatible
+  -i, --inverse                 Inverse opacity function for volume 
+                                rendering
+
+ Testing options:
+      --ref <png file>          Reference
+      --ref-threshold <threshold>
+                                Testing threshold (default: 50)
+      --interaction-test-record <file_path>
+                                Path to an interaction log file to record 
+                                interactions events to
+      --interaction-test-play <file_path>
+                                Path to an interaction log file to play 
+                                interaction events from when loading a file
+
+ Window options:
+      --bg-color <R,G,B>        Background color (default: 0.2,0.2,0.2)
+      --resolution <width,height>
+                                Window resolution (default: 1000,600)
+      --position <x,y>          Window position (default: 0)
+  -z, --fps                     Display frame per second
+  -n, --filename                Display filename
+  -m, --metadata                Display file metadata
+  -u, --blur-background         Blur background
+      --blur-coc arg            Blur circle of confusion radius (default: 
+                                20)
+      --light-intensity <intensity>
+                                Light intensity (default: 1)
+
+Keys:
+  C          Cycle point/cell data coloring                                        
+  S          Cycle array to color with                                             
+  Y          Cycle array component to color with                                   
+  B          Toggle the scalar bar display                                         
+  V          Toggle volume rendering                                               
+  I          Toggle inverse volume opacity                                         
+  O          Toggle point sprites rendering                                        
+  P          Toggle translucency support                                           
+  Q          Toggle ambient occlusion                                              
+  A          Toggle anti-aliasing                                                  
+  T          Toggle tone mapping                                                   
+  E          Toggle the edges display                                              
+  X          Toggle the axes display                                               
+  G          Toggle the grid display                                               
+  N          Toggle the filename display                                           
+  M          Toggle the metadata display                                           
+  Z          Toggle the FPS counter display                                        
+  R          Toggle raytracing rendering                                           
+  D          Toggle denoising when raytracing                                      
+  F          Toggle full screen                                                    
+  U          Toggle blur background                                                
+  K          Toggle trackball interaction                                          
+  F          Toggle HDRI ambient lighting                                          
+  J          Toggle HDRI skybox                                                    
+  L          Increase (+Shift: decrease) lights intensity                          
+  H          Toggle cheat sheet display                                            
+  ?          Dump camera state to the terminal                                     
+  1          Front View camera                                                     
+  3          Left View camera                                                      
+  7          Top View camera                                                       
+  9          Isometric View camera                                                 
+  Escape     Quit                                                                  
+  Enter      Reset camera to initial parameters                                    
+  Space      Play animation if any                                                 
+  Left       Previous file                                                         
+  Right      Next file                                                             
+  Up         Reload current file                                                   
+  Down       Add current file parent directory to the list of files and reload the current file
+  Drop       Load dropped file, folder or HDRI                                     
+
+Examples:
+  C:\Program Files\F3D\bin\f3d.exe file.vtu -xtgans  View a unstructured mesh in a typical nice looking sciviz style       
+  C:\Program Files\F3D\bin\f3d.exe file.glb -tuqap --hdri-file=file.hdr --hdri-ambient --hdri-skybox View a gltf file in a realistic environment                           
+  C:\Program Files\F3D\bin\f3d.exe file.ply -so --point-size=0 --comp=-2 View a point cloud file with direct scalars rendering                 
+  C:\Program Files\F3D\bin\f3d.exe folder            View all files in folder                                              
+
+Report bugs to https://github.com/f3d-app/f3d/issues
