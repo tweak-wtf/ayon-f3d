@@ -3,8 +3,8 @@ from pathlib import Path
 
 import ayon_api
 
-from openpype.lib import run_detached_process
-from openpype.pipeline import load
+from ayon_core.lib import run_detached_process
+from ayon_core.pipeline import load
 
 from ayon_f3d.utils import F3DExecutableCache
 from ayon_f3d.constants import ADDON_NAME, F3D_ROOT
