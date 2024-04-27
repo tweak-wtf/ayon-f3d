@@ -16,7 +16,7 @@ class OpenInF3D(load.LoaderPlugin):
 
     _executable_cache = F3DExecutableCache()
     addon_settings = ayon_api.get_addon_settings(ADDON_NAME, __version__)
-    families = ["model"]
+    product_types = ["model"]
     representations = ["abc", "fbx", "usd"]
     extensions = ["*"]
 
@@ -38,7 +38,7 @@ class OpenInF3D(load.LoaderPlugin):
     def load(self, context, *args):
         path_to_open = Path(self.filepath_from_context(context))
 
-        self.log.info("Opening : {}".format(path_to_open))
+        self.log.warning("Opening : {}".format(path_to_open))
 
         # get basic f3d command parameters
         executable = self.get_f3d_path()
