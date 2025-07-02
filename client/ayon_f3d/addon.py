@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from ayon_core.modules import AYONAddon, IPluginPaths
+from ayon_core.addon import AYONAddon, IPluginPaths
 
 from .version import __version__
 from .constants import ADDON_NAME, F3D_ROOT
